@@ -7,6 +7,7 @@ function buildMetadata(sample) {
   // var userSelect = d3.select("#selDataset")
   var metaDataPanel = d3.select("#sample-metadata")
   var url = `/metadata/${sample}`
+  metaDataPanel.html("");
   d3.json(url).then(function(response) {
     console.log(response);
     var data = [response];
