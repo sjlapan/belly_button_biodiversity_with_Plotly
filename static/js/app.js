@@ -4,12 +4,23 @@ function buildMetadata(sample) {
 
   // Use `d3.json` to fetch the metadata for a sample
     // Use d3 to select the panel with id of `#sample-metadata`
-  var userSelect = d3.select("#selDataset")
+  // var userSelect = d3.select("#selDataset")
+  var metaDataPanel = d3.select("#sample-metadata")
   var url = `/metadata/${sample}`
   d3.json(url).then(function(response) {
+    console.log(response);
+    var data = [response];
+    data.forEach(datum => {  
+      Object
+        .entries(datum)
+        .forEach(([datumKey, datumValue]) => {
+        metaDataPanel.append("p").text(`${datumKey}: ${datumValue}`)
+        });
+    });
 
+    });
   }
-  )
+  
     // Use `.html("") to clear any existing metadata
 
     // Use `Object.entries` to add each key and value pair to the panel
@@ -18,18 +29,18 @@ function buildMetadata(sample) {
 
     // BONUS: Build the Gauge Chart
     // buildGauge(data.WFREQ);
-}
+// }
 
-function buildCharts(sample) {
+// function buildCharts(sample) {
 
-  // @TODO: Use `d3.json` to fetch the sample data for the plots
+//   // @TODO: Use `d3.json` to fetch the sample data for the plots
 
-    // @TODO: Build a Bubble Chart using the sample data
+//     // @TODO: Build a Bubble Chart using the sample data
 
-    // @TODO: Build a Pie Chart
-    // HINT: You will need to use slice() to grab the top 10 sample_values,
-    // otu_ids, and labels (10 each).
-}
+//     // @TODO: Build a Pie Chart
+//     // HINT: You will need to use slice() to grab the top 10 sample_values,
+//     // otu_ids, and labels (10 each).
+// }
 
 function init() {
   // Grab a reference to the dropdown select element
@@ -45,15 +56,15 @@ function init() {
     });
 
     // Use the first sample from the list to build the initial plots
-    const firstSample = sampleNames[0];
-    buildCharts(firstSample);
-    buildMetadata(firstSample);
+    // const firstSample = sampleNames[0];
+    // buildCharts(firstSample);
+    // buildMetadata(firstSample);
   });
 }
 
 function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
-  buildCharts(newSample);
+  // buildCharts(newSample);
   buildMetadata(newSample);
 }
 
