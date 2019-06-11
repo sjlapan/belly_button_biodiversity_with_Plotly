@@ -62,15 +62,23 @@ function buildCharts(sample) {
       mode: "markers",
       marker: {
         color: markerCol,
-        size: markerSize
+        size: markerSize,
+        colorscale: "Earth"
       },
       text: text
-    }
-    var layout = {
-      xAxis: "OTU ID"
-    }
+    };
+    
     var bubbleData = [bubbleTrace];
-    Plotly.newPlot("bubble", bubbleData, layout)
+   
+    // I cannot get the axis label to appear on the scatter
+    // plot! It was showing up before but now nothing seems to work...
+    var layout = {
+      xaxis: {
+        text: "OTU ID"
+    }
+  }
+
+    Plotly.newPlot("bubble", bubbleData, layout) 
   });
 
   // @TODO: Build a Pie Chart
@@ -90,6 +98,7 @@ function buildCharts(sample) {
       type: "pie"
     }
     pieData = [pieTrace]
+    
 
     Plotly.newPlot("pie", pieData)
     // HINT: You will need to use slice() to grab the top 10 sample_values,
