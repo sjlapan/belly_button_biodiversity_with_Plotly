@@ -38,8 +38,6 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
 
   // @TODO: Use `d3.json` to fetch the sample data for the plots
-  var bubblePanel = d3.select("#bubble")
-  var piePanel = d3.select("#pie")
   var url = `/samples/${sample}`
 
   // @TODO: Build a Bubble Chart using the sample data
@@ -87,7 +85,8 @@ function buildCharts(sample) {
     var pieTrace = {
       labels: labels,
       values: values,
-      text: otuText,
+      // text: otuText,
+      hovertext: otuText,
       type: "pie"
     }
     pieData = [pieTrace]
