@@ -45,15 +45,15 @@ function buildCharts(sample) {
   d3.json(url).then(function (response) {
     console.log(response);
 
-    var x = response.otu_ids.slice(0, 10)
+    var x = response.otu_ids//.slice(0, 10)
     console.log(x)
-    var y = response.sample_values.slice(0, 10)
+    var y = response.sample_values//.slice(0, 10)
     console.log(y)
-    var markerSize = response.sample_values.slice(0, 10)
+    var markerSize = response.sample_values//.slice(0, 10)
     console.log(markerSize)
-    var markerCol = response.otu_ids.slice(0, 10)
+    var markerCol = response.otu_ids//.slice(0, 10)
     console.log(markerCol)
-    var text = response.otu_labels.slice(0, 10)
+    var text = response.otu_labels//.slice(0, 10)
     console.log(text)
     var bubbleTrace = {
       x: x,
@@ -74,9 +74,12 @@ function buildCharts(sample) {
     // plot! It was showing up before but now nothing seems to work...
     var layout = {
       xaxis: {
-        text: "OTU ID"
+        title: "OTU ID"
     }
   }
+  // var layout = {
+  //   xLabel: "OTU ID"
+  // }
 
     Plotly.newPlot("bubble", bubbleData, layout) 
   });
